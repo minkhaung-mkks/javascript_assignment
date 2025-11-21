@@ -1,0 +1,24 @@
+<html>
+  <body>
+    <h3>Today Fruits</h3>
+    <ul id="fruit-list"></ul>
+    <hr />
+    <h3>Today Vegetables</h3>
+    <ul id="veg-list"></ul>
+    <script>
+      //Add your code here
+      const vgList = document.getElementById("veg-list")
+      const fList = document.getElementById("fruit-list")
+
+      const fruits = ["Apple", "Banana", "Orange", "Mango", "Strawberry"]
+      const vegetables = ["Carrot", "Broccoli", "Spinach", "Tomato", "Cucumber"]
+
+      for(let f of fruits){
+        fList.innerHTML+=`<li>${f}</li>`
+      }
+      for(let v of vegetables){
+        vgList.innerHTML+=`<li>${v}</li>`
+      }
+    </script>
+  </body>
+</html>

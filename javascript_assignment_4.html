@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Monster Detail</title>
+  </head>
+  <body>
+    <!-- You can modify the HTML to apply change event or add more elements -->
+    <h3>Monster Detail</h3>
+    <div class="ml-box">Select Monster:</div>
+    <div class="ml-box">
+      <select id="monster-list"></select>
+    </div>
+    <hr />
+    <div class="ml-box">
+      <table class="monster-card">
+        <tr id="td-monster-img-container">
+          <td id="td-monster-img-box">
+            <img src="" id="td-monster-img" alt="" />
+          </td>
+        </tr>
+        <tr>
+          <th>ID</th>
+          <td id="td-monster-id"></td>
+        </tr>
+        <tr>
+          <th>Name</th>
+          <td id="td-monster-name"></td>
+        </tr>
+        <tr>
+          <th>HP</th>
+          <td id="td-monster-hp"></td>
+        </tr>
+        <tr>
+          <th>EXP</th>
+          <td id="td-monster-exp"></td>
+        </tr>
+      </table>
+    </div>
+    <script>
+      // Monster list as array of JSON objects
+      const monsters = [
+        {
+          id: 1,
+          name: "Fire Dragon",
+          hp: 150,
+          exp: 85,
+          img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Friedrich-Johann-Justin-Bertuch_Mythical-Creature-Dragon_1806.jpg/1200px-Friedrich-Johann-Justin-Bertuch_Mythical-Creature-Dragon_1806.jpg",
+        },
+        {
+          id: 2,
+          name: "Ice Wolf",
+          hp: 75,
+          exp: 45,
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQORYCjpCl_VNT3-P_J1DAn94oh3lrYa4PIUw&s",
+        },
+        {
+          id: 3,
+          name: "Shadow Goblin",
+          hp: 40,
+          exp: 25,
+          img: "https://i.pinimg.com/474x/ae/9d/b0/ae9db0bc01aac3d3dec5b5e62a761f6d.jpg",
+        },
+        {
+          id: 4,
+          name: "Lightning Phoenix",
+          hp: 200,
+          exp: 120,
+          img: "https://i.etsystatic.com/36531035/r/il/e71ff3/4547219486/il_570xN.4547219486_nsgu.jpg",
+        },
+        {
+          id: 5,
+          name: "Earth Golem",
+          hp: 180,
+          exp: 95,
+          img: "https://w0.peakpx.com/wallpaper/637/652/HD-wallpaper-earth-golem-fantasy-rock-earth-golem.jpg",
+        },
+        { id: 6, name: "Poison Spider", hp: 60, exp: 35, img: "XX" },
+        {
+          id: 7,
+          name: "Wind Eagle",
+          hp: 90,
+          exp: 55,
+          img: "https://png.pngtree.com/png-vector/20230808/ourmid/pngtree-eagle-wing-clipart-golden-eagle-with-wings-spread-vector-illustration-cartoon-png-image_6863028.png",
+        },
+        {
+          id: 8,
+          name: "Dark Skeleton",
+          hp: 65,
+          exp: 40,
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTM659L2oRhnE6zz6Q1rJwQje9g0L_JgSlmA&s",
+        },
+        {
+          id: 9,
+          name: "Crystal Unicorn",
+          hp: 120,
+          exp: 75,
+          img: "https://cdn11.bigcommerce.com/s-ad7e4/images/stencil/1280x1280/products/1155/1407/Rearing-Crystal-Unicorn-3__28849.1312577312.jpg?c=2",
+        },
+        {
+          id: 10,
+          name: "Lava Titan",
+          hp: 250,
+          exp: 150,
+          img: "https://cdnb.artstation.com/p/assets/images/images/010/505/661/large/kridsanat-amphonvirojkij-1illust.jpg?1524770961",
+        },
+      ]; // Your script goes here...
+      const monDropdown = document.getElementById("monster-list");
+      monDropdown.appendChild(new Option("-", ""));
+      monsters.forEach((mon) => {
+        monDropdown.appendChild(new Option(mon.name, mon.id));
+      });
+      monDropdown.addEventListener("change", () => {
+        const selectedId = Number(monDropdown.value);
+        const monster = monsters.find((m) => m.id === selectedId);
+
+        document.getElementById("td-monster-id").textContent =
+          monster?.id ?? "";
+        document.getElementById("td-monster-name").textContent =
+          monster?.name ?? "";
+        document.getElementById("td-monster-hp").textContent =
+          monster?.hp ?? "";
+        document.getElementById("td-monster-exp").textContent =
+          monster?.exp ?? "";
+        document.getElementById("td-monster-img").src = monster?.img ?? "";
+      });
+    </script>
+    <style>
+        h3{
+            text-align: center;
+            font-size: 2rem;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            color: white;
+        }
+        select{
+            padding: 10px;
+            margin: 0 auto;
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+
+        }
+        body{
+            background: #2A7B9B;
+background:linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+        }
+        .ml-box{
+           width: 100vw;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           color:white
+        }
+      .monster-card {
+        width: 25vw;
+        height: 60vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* From https://css.glass */
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        gap: 10px;
+      }
+      .monster-card tr {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 5px;
+        margin: 5px;
+      }
+      #td-monster-img-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #td-monster-img-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .monster-card img {
+        width: 300px;
+        height: 300px;
+      }
+    </style>
+  </body>
+</html>
